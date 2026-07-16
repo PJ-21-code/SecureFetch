@@ -27,7 +27,7 @@ async def post_transaction(requestid: str):
         chunk_size = 50 # no of records that will go in one time
 
         for i in range(0, len(items), chunk_size):
-            chunk = items[i : i + chunk_size]
+            chunk = items[i : i+chunk_size]
 
         token= await get_csrf_tokens()
         sap_response= await send_sap_post_request(token, requestid, chunk)
