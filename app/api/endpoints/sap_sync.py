@@ -20,7 +20,7 @@ async def post_transaction(requestid: str):
 
     try: 
 
-        items= await get_items_from_db(requestid: str)
+        items= await get_items_from_db(requestid)
         if not items:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= "Transaction items not found!")
         token= await get_csrf_tokens()
