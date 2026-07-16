@@ -19,10 +19,10 @@ class TransactionItem(BaseModel):
     transactionReference: str
     chequeNo: str
     sourceSystem: str
-    strPolCostStr: str
+    strPolCostStr: Optional[str]= None
     strUtrNbr: str
     strAgentCd: str
-    strPyNum: str
+    strPyNum: Optional[str]= None
     strDtlUinCode: str
     sapBatchNo: str
     sapRecord: str

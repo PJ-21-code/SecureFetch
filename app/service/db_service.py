@@ -5,7 +5,7 @@ async def get_items_from_db(request_id: str):
     try:
       cursor = conn.cursor()
 
-      cursor.execute("SELECT * FROM Transaction WHERE request_id= ?", (request_id,))
+      cursor.execute("SELECT * FROM Transactions WHERE request_id= ?", (request_id,))
 
       rows= cursor.fetchall()
 

@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     SAP_USERNAME: str
     SAP_PASSWORD: SecretStr
 
-    XSRF_HEADER_NAME: str= Field(default="X-CSRF-Token")
-    XSRF_FETCH_VALUE: str= Field(default="Fetch")
+    XSRF_HEADER_NAME: str= "X-CSRF-Token"
+    XSRF_FETCH_VALUE: str= "Fetch"
 
     model_config= SettingsConfigDict(env_file=".env")
 
