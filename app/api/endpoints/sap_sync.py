@@ -1,7 +1,7 @@
 from fastapi import APIRouter,HTTPException,status
 
 from app.service.client import get_csrf_tokens, send_sap_post_request
-from app.schemas.transactions import SapPayload
+from app.service.db_service import get_items_from_db
 
 router= APIRouter()
 
