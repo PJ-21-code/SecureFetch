@@ -42,6 +42,6 @@ async def send_sap_post_request(token:str, request_id: str, items_batch: list):
         )
 
         if response.status_code not in [200,201]:
-            raise Exception(f"Faailed to post transaction data, status={response.status_code}, message= {response.text}") 
+            raise Exception(f"Failed to post transaction data, status={response.status_code}, message= {response.text}") 
 
         return response.json()
