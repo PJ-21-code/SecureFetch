@@ -31,8 +31,11 @@ async def post_transaction(requestid: str):
 
         for i in range(0, len(items), chunk_size):
             chunk = items[i : i+chunk_size]
-            sap_response= await send_sap_post_request(token, requestid, chunk)
+            batch_num = (i // chunk_size) + 1
+            unique_batch_id = f"{requestid}_B{batch_num}"
+            sap_response= await send_sap_post_request(token, unique_batch_id, chunk)
             result.append(sap_response)
+
         return {
             "status": "success",
             "message": "Transaction data posted successfully",
