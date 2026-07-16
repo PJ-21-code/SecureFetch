@@ -37,7 +37,6 @@ async def send_sap_post_request(token:str, request_id: str, items_batch: list):
             settings.SAP_ODATA_URL,
             auth= (settings.SAP_USERNAME, settings.SAP_PASSWORD.get_secret_value()),
             headers=headers,
-            json= payload,
             timeout=60.0
         )
 

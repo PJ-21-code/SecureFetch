@@ -29,6 +29,7 @@ async def post_transaction(requestid: str):
         return {
             "status": "success",
             "message": "Transaction data posted successfully",
+            "Request-ID": requestid,
             "SAP_data": sap_response
         }
     
