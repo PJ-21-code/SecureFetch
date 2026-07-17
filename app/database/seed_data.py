@@ -9,7 +9,7 @@ def seed_data():
     cursor = conn.cursor()
 
     record = (
-        "REQ",           
+        0,           
         "NID001",          
         "L001",             
         "DOC001",          

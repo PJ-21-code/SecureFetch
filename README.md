@@ -8,7 +8,7 @@ This backend serves as the core orchestration engine, acting as a secure bridge 
 
 2 **Intelligent Batching**: To maintain system stability, the backend automatically partitions large datasets into smaller, manageable chunks for transmission.
 
-3 **Dynamic Tracking**: It generates unique identifiers for every batch (e.g., REQ_B1, REQ_B2), ensuring an accurate audit trail of which records were processed.
+3 **Dynamic Tracking**: It generates unique identifiers (request_id) for every batch (e.g., 1,2), ensuring an accurate audit trail of which records were processed.
 
 4 **Strict Data Validation**: The system utilizes Pydantic to validate every transaction against the required schema before transmission, catching potential formatting errors early.
 

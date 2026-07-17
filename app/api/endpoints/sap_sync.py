@@ -17,7 +17,7 @@ async def get_token():
         raise HTTPException(status_code= status.HTTP_502_BAD_GATEWAY, detail= f"Cound not fetch token: {str(e)}")
     
 @router.post('/post-transaction', status_code= status.HTTP_201_CREATED)
-async def post_transaction(base_requestid: str="REQ"):
+async def post_transaction(base_requestid: int= 0):
 
     try: 
 
@@ -36,7 +36,7 @@ async def post_transaction(base_requestid: str="REQ"):
             items_as_models = [TransactionItem(**item) for item in chunk]
 
             batch_num = (i // chunk_size) + 1
-            dynamic_request_id = f"{base_requestid}_B{batch_num}"
+            dynamic_request_id = batch_num
 
             payload = SapPayload(
                 RequestId= dynamic_request_id, 

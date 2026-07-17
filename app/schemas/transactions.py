@@ -32,5 +32,5 @@ class TransactionItem(BaseModel):
     transactionDateEod: str
 
 class SapPayload(BaseModel):
-    RequestId: str
+    RequestId: int
     ToItem: List[TransactionItem]    

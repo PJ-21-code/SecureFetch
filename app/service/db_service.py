@@ -1,6 +1,6 @@
 from app.schemas.transactions import TransactionItem
 from app.database.connections import get_db_connection
-async def get_items_from_db(base_request_id: str= "REQ"):
+async def get_items_from_db(base_request_id: int= 0):
     conn = get_db_connection()
     try:
       cursor = conn.cursor()

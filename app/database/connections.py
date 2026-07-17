@@ -12,7 +12,7 @@ def init_db():
         cursor.execute("""
         CREATE TABLE Transactions(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            request_id TEXT DEFAULT NULL,           
+            request_id INTEGER DEFAULT NULL,           
             nid TEXT,
             nlineNo TEXT,
             docNo TEXT,
