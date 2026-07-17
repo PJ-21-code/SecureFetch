@@ -1,14 +1,15 @@
 import sqlite3
 import os
 
-db_path = os.path.join(os.path.dirname(__file__), '..', '..', 'sap_data.db')
+db_path = os.path.join(os.path.dirname(__file__),'..','..', "sap_data.db")
+print(f"Connecting to database at: {db_path}")
 
 def seed_data():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
     record = (
-        "REQ123",           
+        "REQ",           
         "NID001",          
         "L001",             
         "DOC001",          
@@ -39,11 +40,11 @@ def seed_data():
     )
 
     cursor.execute('''
-        INSERT INTO transactions (
-            request_id, nid, nlineNo, docNo, itemNumber, transactionDate, 
+        INSERT INTO Transactions (
+            request_id,nid, nlineNo, docNo, itemNumber, transactionDate, 
             polholdName, dC, accntCode, amount, product, channel, location, 
             assignment, transactionReference, chequeNo, sourceSystem, 
-            strPolCostCtr, strUtrNbr, strAgentCd, strPvNum, strDtlUinCode, 
+            strPolCostStr, strUtrNbr, strAgentCd, strPyNum, strDtlUinCode, 
             sapBatchNo, sapRecord, sapRecordDt, dtCreated, strCreatedBy, 
             transactionDateEod
         ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)

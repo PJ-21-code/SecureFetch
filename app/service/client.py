@@ -19,12 +19,9 @@ async def get_csrf_tokens() -> str:
         
         return token
     
-async def send_sap_post_request(token:str, request_id: str, items_batch: list):
+async def send_sap_post_request(token:str, payload:dict):
 
-    payload= {
-        "request_id": request_id,
-        "ToItem": items_batch
-    }
+    
 
     async with httpx.AsyncClient() as client:
         headers= {
@@ -33,8 +30,9 @@ async def send_sap_post_request(token:str, request_id: str, items_batch: list):
             "Accept": "application/json"
         }
 
-        response= await client.get(
+        response= await client.post(
             settings.SAP_ODATA_URL,
+            json= payload,
             auth= (settings.SAP_USERNAME, settings.SAP_PASSWORD.get_secret_value()),
             headers=headers,
             timeout=60.0

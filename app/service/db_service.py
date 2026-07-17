@@ -1,11 +1,11 @@
 from app.schemas.transactions import TransactionItem
 from app.database.connections import get_db_connection
-async def get_items_from_db(request_id: str):
+async def get_items_from_db(base_request_id: str= "REQ"):
     conn = get_db_connection()
     try:
       cursor = conn.cursor()
 
-      cursor.execute("SELECT * FROM Transactions WHERE request_id= ?", (request_id,))
+      cursor.execute("SELECT * FROM Transactions WHERE request_id= ?", (base_request_id,))
 
       rows= cursor.fetchall()
 
