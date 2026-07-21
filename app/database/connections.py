@@ -1,16 +1,16 @@
 import sqlite3
 import os
+from contextlib import contextmanager
 
 DB_NAME= "sap_data.db"
 
 def init_db():
 
-    if not os.path.exists(DB_NAME):
         conn= sqlite3.connect(DB_NAME)
         cursor= conn.cursor()
 
         cursor.execute("""
-        CREATE TABLE Transactions(
+        CREATE TABLE IF NOT EXISTS Transactions(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             request_id INTEGER DEFAULT NULL,           
             nid TEXT,
@@ -44,9 +44,21 @@ def init_db():
 
         """)
 
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS sap_sync_logs(
+            request_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            status TEXT DEFAULT 'PENDING',
+            start_record_id INTEGER NOT NULL,
+            end_record_id INTEGER NOT NULL,
+            total_records INTEGER NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
         conn.commit()
         conn.close()
-        print(f"Database {DB_NAME} created succesfully")
+        print(f"Database {DB_NAME} and sync logs table created successfully")
 
 
 def get_db_connection():
@@ -54,4 +66,4 @@ def get_db_connection():
     init_db()
     conn = sqlite3.connect(DB_NAME)
     conn.row_factory = sqlite3.Row
-    return conn    
+    return conn       
