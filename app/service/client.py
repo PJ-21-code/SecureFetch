@@ -6,7 +6,8 @@ async def get_csrf_tokens() -> str:
         response= await client.get(
             settings.SAP_ODATA_URL,
             auth= (settings.SAP_USERNAME, settings.SAP_PASSWORD.get_secret_value()),
-            headers= {settings.XSRF_HEADER_NAME: settings.XSRF_FETCH_VALUE}
+            headers= {settings.XSRF_HEADER_NAME: settings.XSRF_FETCH_VALUE},
+            timeout=30.0
         ) 
 
         if response.status_code!=200:
